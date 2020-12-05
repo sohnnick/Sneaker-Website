@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nicholas Sohn | Assignment 09</title>
+	<link rel="stylesheet" href="browse.css">
+	<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+	<div id="menu">
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/browse.html">Browse</a>
+		<p>&emsp;&emsp;</p>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/news.html">News</a>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/home.html"><img src="img/logo.png" alt="logo"></a>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/contact.html">Contact</a>
+		<p>&emsp;&emsp;</p>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/cart.html">Cart</a>
+	</div>
+	
+	<div class="clear"></div>
+
+	<div id="underline"></div>
+
+	<div class="clear"></div>
+
+	<form id="searchbar"> 
+		<input type="text" placeholder="Search.." id="searchinput">
+		<button type="submit" id="submitbutton">Submit</button>
+	</form>
+
+	<div class="clear"></div>
+
+	<div id="info">
+		<h2>Results</h2>
+		<h5>Best Selling</h5>
+	</div>
+
+	<div id="homecontainer">
+		<div class="shoe">
+			<img src="img/shoes/cp.jpg" alt="commonprojects">
+			<h4 class="brand">Common Projects</h4>
+			<h4 class="h4p2">Achilles</h4>
+			<h5 class="type">Men</h5>
+			<h5 class="colorway">White</h5>
+			<p class="price">$290</p>
+			<button class="cartbutton">Add to Cart</button>
+		</div>
+
+		<div class="shoe">
+			<img src="img/shoes/airjordan.jpg" alt="airjordan">
+			<h4 class="brand">Jordan</h4>
+			<h4 class="h4p2">Air Jordan 1 Lows</h4>
+			<h5 class="type">Men</h5>
+			<h5 class="colorway">Neon</h5>
+			<p class="price">$140</p>
+			<button class="cartbutton">Add to Cart</button>
+		</div>
+
+		<div class="shoe">
+			<img src="img/shoes/af1.jpg" alt="af1">
+			<h4 class="brand">Nike</h4>
+			<h4 class="h4p2">Air Force 1</h4>
+			<h5 class="type">Men</h5>
+			<h5 class="colorway">White</h5>
+			<p class="price">$90</p>
+			<button class="cartbutton">Add to Cart</button>
+		</div>
+
+		<div class="clear"></div>
+
+		<div class="shoe">
+			<img src="img/shoes/hurache.jpg" alt="hurache">
+			<h4 class="brand">Nike</h4>
+			<h4 class="h4p2">Huraches</h4>
+			<h5 class="type">Men</h5>
+			<h5 class="colorway">Black</h5>
+			<p class="price">$120</p>
+			<button class="cartbutton">Add to Cart</button>
+		</div>
+
+		<div class="shoe">
+			<img src="img/shoes/airmax1.jpg" alt="airmax1">
+			<h4 class="brand">Nike</h4>
+			<h4 class="h4p2">Air Max 1</h4>
+			<h5 class="type">Men</h5>
+			<h5 class="colorway">Beige</h5>
+			<p class="price">$190</p>
+			<button class="cartbutton">Add to Cart</button>
+		</div>
+
+		<div class="shoe">
+			<img src="img/shoes/airmax97.jpg" alt="airmax97">
+			<h4 class="brand">Nike</h4>
+			<h4 class="h4p2">Air Max 97</h4>
+			<h5 class="type">Men</h5>
+			<h5 class="colorway">Sky Blue</h5>
+			<p class="price">$190</p>
+			<button class="cartbutton">Add to Cart</button>
+		</div>
+
+		<div class="clear"></div>
+
+		<div class="shoe">
+			<img src="img/shoes/superstar.jpg" alt="superstar">
+			<h4 class="brand">Adidas</h4> 
+			<h4 class="h4p2">Superstars</h4>
+			<h5 class="type">Men</h5>
+			<h5 class="colorway">White</h5>
+			<p class="price">$70</p>
+			<button class="cartbutton">Add to Cart</button>
+		</div>
+
+		<div class="shoe">
+			<img src="img/shoes/pegasus.jpg" alt="pegasus">
+			<h4 class="brand">Nike</h4>
+			<h4 class="h4p2">Pegasus</h4>
+			<h5 class="type">Men</h5>
+			<h5 class="colorway">Black</h5>
+			<p class="price">$100</p>
+			<button class="cartbutton">Add to Cart</button>
+		</div>
+
+		<div class="shoe">
+			<img src="img/shoes/continental.jpg" alt="continental">
+			<h4 class="brand">Reebok</h4>
+			<h4 class="h4p2">Continental 80</h4>
+			<h5 class="type">Men</h5>
+			<h5 class="colorway">White</h5>
+			<p class="price">$110</p>
+			<button class="cartbutton">Add to Cart</button>
+		<div>
+	</div>
+
+	<div class="clear"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+	<script type="text/javascript">
+		function displayData(data, input){
+			document.querySelector('#homecontainer').innerHTML = '';
+			document.querySelector('#info h5').innerHTML = 'Your search: ' + input;
+			//console.log(data);
+			
+			for(var i = 0; i < data.results.length; i++){
+				var div = document.createElement('div');
+				var img = document.createElement('img');
+				var h4a = document.createElement('h4');
+				var h4b = document.createElement('h4');
+				var h5a = document.createElement('h5');
+				var h5b = document.createElement('h5');
+				var p = document.createElement('p');
+				var button = document.createElement('button');
+
+				div.classList.add('shoe');
+				img.alt = data.results[i].name;
+				img.src = 'img/unnamed.png';
+				h4a.innerHTML = data.results[i].brand;
+				h4b.innerHTML = data.results[i].name;
+				h4b.classList.add('h4p2');
+				h5a.innerHTML = data.results[i].gender;
+				h5b.innerHTML = data.results[i].colorway;
+				p.innerHTML = '$' + data.results[i].retailPrice;
+				button.innerHTML = 'Add to Cart';
+				button.classList.add('cartbutton');
+				h4a.classList.add('brand');
+				h5a.classList.add('type');
+				h5b.classList.add('colorway');
+				p.classList.add('price');
+
+				div.appendChild(img);
+				div.appendChild(h4a);
+				div.appendChild(h4b);
+				div.appendChild(h5a);
+				div.appendChild(h5b);
+				div.appendChild(p);
+				div.appendChild(button);
+
+				document.querySelector('#homecontainer').appendChild(div);
+				if((i+1)%3 == 0){
+					var clear = document.createElement('div');
+					clear.classList.add('clear');
+					document.querySelector('#homecontainer').appendChild(clear);
+				}
+			}
+			addToCart();
+		}
+
+		document.querySelector('#searchbar').onsubmit = function(){
+			console.log('hello')
+			var input = document.querySelector('#searchinput').value.trim();
+			if(input.length != 0){
+				$.ajax({
+					url: 'https://api.thesneakerdatabase.com/v1/sneakers/?limit=12&name=%27'+input+'%27',
+					dataType: "json",
+					success: function(results){
+						displayData(results, input);
+					},
+					error: function(e){
+						alert("AJAX Error");
+						console.log(e);
+					}
+				});
+
+				document.querySelector('#searchinput').value = '';
+			}
+			return false;
+		}
+
+		if(localStorage.length == 0){
+			localStorage.count = '0';
+		}
+
+		function addToCart(){
+			var cart = document.querySelectorAll('.cartbutton');
+
+			for ( var i = 0; i < cart.length; i++ ) {
+				cart[i].onclick = function(){	
+					var info = {
+						name: this.parentNode.querySelector('.h4p2').innerHTML,
+						brand: this.parentNode.querySelector('.brand').innerHTML,
+						colorway: this.parentNode.querySelector('.colorway').innerHTML,
+						type: this.parentNode.querySelector('.type').innerHTML,
+						price: this.parentNode.querySelector('.price').innerHTML
+					}
+
+					var jsonstring_info = JSON.stringify(info);
+					var key = 'key' + localStorage.count;
+					console.log(key);
+					localStorage.setItem(key, jsonstring_info);
+					localStorage.count = parseInt(localStorage.count) + 1;
+				}
+			}
+		}
+
+		addToCart();
+		//localStorage.clear();
+		//console.log(localStorage);
+	</script>
+
+</body>
+</html>

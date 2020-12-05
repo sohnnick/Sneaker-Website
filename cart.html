@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nicholas Sohn | Assignment 09</title>
+	<link rel="stylesheet" href="cart.css">
+	<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+	<div id="menu">
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/browse.html">Browse</a>
+		<p>&emsp;&emsp;</p>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/news.html">News</a>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/home.html"><img src="img/logo.png" alt="logo"></a>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/contact.html">Contact</a>
+		<p>&emsp;&emsp;</p>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/cart.html">Cart</a>
+	</div>
+	
+	<div class="clear"></div>
+
+	<div id="underline"></div>
+
+	<div class="clear"></div>
+
+	<div id="container">
+		<table id="table">
+			<tr>
+				<th class="header">Brand</th>
+				<th class="header">Name</th>
+				<th class="header">Type</th>
+				<th class="header">Colorway</th>
+				<th class="header">Price ($)</th>
+			</tr>
+		</table>
+	</div>
+
+	<div id="sum">
+		<p>Number of Items: <span id="count">0</span></p>
+		<p>Total Price: $<span id="total">0</span></p>
+		<button id="clearcart">Clear Cart</button>
+	</div>
+
+	<script type="text/javascript">
+		var items = localStorage;
+		//console.log(items);
+		var length = items.count;
+		//console.log(JSON.parse(items.getItem('key0')).name);
+
+		function createList(items, length){
+			var sum = 0;
+
+			for(var i = 0; i < length; i++){
+				var keyname = 'key' + i;
+				//console.log(JSON.parse(items.getItem(keyname)).name);
+
+				var row = document.createElement('tr');
+				var brand = document.createElement('th');
+				var name = document.createElement('th');
+				var type = document.createElement('th');
+				var colorway = document.createElement('th');
+				var price = document.createElement('th');
+				var button = document.createElement('button');
+
+				var brand1 = JSON.parse(items.getItem(keyname)).brand;
+				var name1 = JSON.parse(items.getItem(keyname)).name;
+				var type1 = JSON.parse(items.getItem(keyname)).type;
+				var colorway1 = JSON.parse(items.getItem(keyname)).colorway;
+				var price1 = JSON.parse(items.getItem(keyname)).price;
+				
+				price1 = price1.slice(price1.indexOf('$')+1);
+
+				brand.innerHTML = brand1;
+				name.innerHTML = name1;
+				type.innerHTML = type1;
+				colorway.innerHTML = colorway1;
+				price.innerHTML = price1;
+				button.innerHTML = 'Delete';
+
+				button.classList.add('removebutton');
+				price.classList.add('price');
+				name.classList.add('name');
+				brand.classList.add('brand');
+				type.classList.add('type');
+				colorway.classList.add('colorway');
+
+				row.appendChild(brand);
+				row.appendChild(name);
+				row.appendChild(type);
+				row.appendChild(colorway);
+				row.appendChild(price);
+				row.appendChild(button);
+
+				document.querySelector('#table').appendChild(row);
+
+				sum = sum + parseInt(price1);
+			}
+			document.querySelector('#count').innerHTML = length;
+			document.querySelector('#total').innerHTML = sum;
+			bindRemoveEvents();
+		}
+
+		document.querySelector('#clearcart').onclick = function(){
+			localStorage.clear();
+			localStorage.count = 0;
+			document.querySelector('#count').innerHTML = 0;
+			document.querySelector('#total').innerHTML = 0;
+			document.querySelector('#table').innerHTML = '';
+
+			var row = document.createElement('tr');
+			var brand = document.createElement('th');
+			var name = document.createElement('th');
+			var type = document.createElement('th');
+			var colorway = document.createElement('th');
+			var price = document.createElement('th');
+
+			brand.classList.add('header');
+			name.classList.add('header');
+			type.classList.add('header');
+			colorway.classList.add('header');
+			price.classList.add('header');
+
+			brand.innerHTML = 'Brand';
+			name.innerHTML = 'Name';
+			type.innerHTML = 'Type';
+			colorway.innerHTML = 'Colorway';
+			price.innerHTML = 'Price ($)';
+
+			row.appendChild(brand);
+			row.appendChild(name);
+			row.appendChild(type);
+			row.appendChild(colorway);
+			row.appendChild(price);
+
+			document.querySelector('#table').appendChild(row);
+
+			alert('Your cart has been cleared!');
+		}
+
+		function fixLocalStorage(){
+			var count = localStorage.count;
+			localStorage.clear();
+			localStorage.count = count;
+			var removeBtns = document.querySelectorAll('.removebutton');
+			for( var i = 0; i < count; i++){
+				var info = {
+					name: removeBtns[i].parentNode.querySelector('.name').innerHTML,
+					brand: removeBtns[i].parentNode.querySelector('.brand').innerHTML,
+					colorway: removeBtns[i].parentNode.querySelector('.colorway').innerHTML,
+					type: removeBtns[i].parentNode.querySelector('.type').innerHTML,
+					price: removeBtns[i].parentNode.querySelector('.price').innerHTML
+				}
+
+				var jsonstring_info = JSON.stringify(info);
+				var key = 'key' + i;
+				console.log(key);
+				localStorage.setItem(key, jsonstring_info);
+			}
+		}
+
+		function bindRemoveEvents(){
+			var removeBtns = document.querySelectorAll('.removebutton');
+			for ( var i = 0; i < removeBtns.length; i++ ) {
+				removeBtns[i].onclick = function(){	
+					localStorage.count = parseInt(localStorage.count) - 1;
+					document.querySelector('#count').innerHTML = localStorage.count;
+					document.querySelector('#total').innerHTML = parseInt(document.querySelector('#total').innerHTML) - parseInt(this.parentNode.querySelector('.price').innerHTML);
+
+					var keyname = 'key' + i;
+					this.parentNode.remove();
+					fixLocalStorage();
+					console.log(localStorage);
+					removeBtns = document.querySelectorAll('.removebutton');
+				}
+			}
+		}
+		createList(items, length);
+		console.log(localStorage);
+	</script>
+</body>
+</html>

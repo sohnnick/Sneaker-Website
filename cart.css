@@ -1,0 +1,50 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-family: sans-serif;
+}
+
+.hidden{
+	font-size: 0px;
+}
+
+#container{
+	margin-left: auto;
+	margin-right: auto;
+	width: 700px;
+}
+
+#sum{
+	text-align: center;
+}
+
+#clearcart{
+	background-color: black;
+	color: white;
+	border-radius: 3px;
+	border: 1px solid black;
+	height: 33px;
+}
+
+.removebutton{
+	background-color: black;
+	color: white;
+	border-radius: 3px;
+	border: 1px solid black;
+	height: 18px;
+}
+
+table{
+	border: 1px solid black;
+	border-spacing: 20px;
+	width: 700px;
+}
+
+.header{
+	font-size: 25px;
+	color: red;
+}
+
+#sum p{
+	font-weight: bold;
+}

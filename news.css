@@ -1,0 +1,30 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-family: sans-serif;
+}
+
+#content img{
+	object-fit: cover;
+	width: 200px;
+	height: 150px;
+}
+
+.newsbox{
+	width: 200px;
+	float: left;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#content{
+	width: 660px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+}
+
+.newsbox a{
+	text-decoration: none;
+	color: purple;
+}

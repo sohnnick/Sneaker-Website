@@ -1,0 +1,87 @@
+#homecontainer{
+	margin-left: auto;
+	margin-right: auto;
+	width: 790px;
+	margin-top: 0px;
+}
+
+#info{
+	margin-top: 60px;
+	text-align: center;
+}
+
+#info h5{
+	margin-top: -10px;
+	color: red;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: sans-serif;
+}
+
+#header{
+	font-family: sans-serif;
+	position: relative;
+	margin-top: -550px;
+	margin-left: 70px;
+}
+
+.shoe {
+	float: left;
+	text-align: center;
+	height: 450px;
+}
+
+.shoe img{
+	width: 250px;
+	height: 250px;
+	object-fit: cover;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: 1px solid black;
+}
+
+#searchbar{
+	width: 667px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 15px;
+	position: relative;
+	z-index: 2;
+}
+
+#searchbar input{
+	width: 600px;
+	height: 30px;
+	border: 1.5px solid black;
+	border-radius: 6px;
+}
+
+#searchbar button{
+	background-color: black;
+	color: white;
+	border-radius: 3px;
+	border: 1px solid black;
+	height: 33px;
+}
+
+#homecontainer p, h5{
+	margin-top: -10px;
+	font-size: 10px;
+}
+
+.cartbutton {
+	margin-top: 0px;
+	background-color: black;
+	color: white;
+	border-radius: 3px;
+	border: 1px solid black;
+	font-size: 10px;
+	height: 18px;
+}
+
+.h4p2{
+	margin-top: -16px;
+}

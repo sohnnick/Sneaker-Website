@@ -1,0 +1,25 @@
+body{
+	font-family: sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+#coverimg img{
+	width: 100%;
+	height: 100%;
+	margin-top: -94px;
+}
+
+#headlines{
+	font-family: monaco;
+	color: red;
+	position: relative;
+	margin-top: -600px;
+	margin-left: 80px;
+}
+
+#description{
+	width: 300px;
+	font-family: monaco;
+	margin-left: 80px;
+}

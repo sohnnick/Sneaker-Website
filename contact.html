@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nicholas Sohn | Assignment 09</title>
+	<link rel="stylesheet" href="contact.css">
+	<link rel="stylesheet" href="shared.css">
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<div id="menu">
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/browse.html">Browse</a>
+		<p>&emsp;&emsp;</p>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/news.html">News</a>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/home.html"><img src="img/logo.png" alt="logo"></a>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/contact.html">Contact</a>
+		<p>&emsp;&emsp;</p>
+		<a href="https://viterbi-web.usc.edu/~nsohn/itp301/final_project/cart.html">Cart</a>
+	</div>
+	
+	<div class="clear"></div>
+
+	<div id="underline"></div>
+
+	<div class="clear"></div>
+
+	<form id="contactform" action="confirmation.html">
+			<div id="label" class="box">
+				<label for="name">Full Name:</label>
+				<small id="namestar" class="error"></small>
+				<br>
+				<br>
+				<label for="email">Email:</label>
+				<small id="emailstar" class="error"></small>
+				<br>
+				<br>
+				<label for="message">Message:</label>
+				<small id="messagestar" class="error"></small>
+			</div>
+			<div id="input" class="box">
+				<input type="text" id="name">
+				<br>
+				<small id="nameerror" class="error"></small>
+				<br>
+				<input type="text" id="email">
+				<br>
+				<small id="emailerror" class="error"></small>
+				<br>
+				<textarea id="message"></textarea>
+				<br>
+				<small id="messageerror" class="error"></small>
+				<p id="wordcount">0/500</p>
+			</div>
+			<div class="clear"></div>
+			<div id="buttons">
+				<button type="submit" id="btn-primary">Submit</button>
+			</div>
+	</form>
+
+	<div class="clear"></div>
+
+	<div id="content">
+		<h4>Check out our links below:</h4>
+		<div id="links">
+            <a href="https://github.com/sohnnick" class="fa fa-github" target="_blank"></a>
+            <a href="https://www.instagram.com/sohnnick/" class="fa fa-instagram" target="_blank"></a>
+            <a href="https://www.linkedin.com/in/nicholas-sohn-6a038057/" class="fa fa-linkedin" target="_blank"></a>
+            <a href="https://www.youtube.com/channel/UCWUgmsK2hMq6XUMAe0ulH7Q?view_as=subscriber" class="fa fa-youtube" target="_blank"></a>
+        </div>
+	</div>
+
+	<script type="text/javascript">
+		//character count
+		document.querySelector('#message').oninput = function(){
+			var message = this.value;
+			document.querySelector('#wordcount').innerHTML = message.length + "/500";
+		}
+
+		function namecheck(){
+			console.log('hello');
+			//obtain name and trim it
+			var name = document.querySelector('#name').value.trim();
+			//if length of name is 0 then return false
+			if(name.length == 0){
+				document.querySelector('#nameerror').innerHTML = 'Name cannot be empty.';
+				document.querySelector('#namestar').innerHTML = '*';
+				return false;
+			}
+			//if name does not include space
+			else if(name.indexOf(' ') == -1){
+				document.querySelector('#nameerror').innerHTML = 'You must provide full name.';
+				document.querySelector('#namestar').innerHTML = '*';
+				return false;
+			}
+			//else return true
+			else{
+				document.querySelector('#nameerror').innerHTML = '';
+				document.querySelector('#namestar').innerHTML = '';
+				return true;
+			}
+		}
+
+		function emailcheck(){
+			var email = document.querySelector('#email').value.trim();
+			var example = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			//if empty then false
+			if( /^$/.test(email) ){
+				document.querySelector('#emailerror').innerHTML = 'Email cannot be empty.';
+				document.querySelector('#emailstar').innerHTML = '*';
+				return false;
+			}
+			//if not valid email then false
+			else if( example.test(email) == false){
+				document.querySelector('#emailerror').innerHTML = '*Invalid email.';
+				document.querySelector('#emailstar').innerHTML = '*';
+				return false;
+			}
+			else{
+				document.querySelector('#emailerror').innerHTML = '';
+				document.querySelector('#emailstar').innerHTML = '';
+				return true;
+			}
+		}
+
+		function messagecheck(){
+			//obtain message
+			var message = document.querySelector('#message').value;
+			//if message length is 0 then false
+			if(message.length == 0){
+				document.querySelector('#messageerror').innerHTML = 'Message cannot be empty.';
+				document.querySelector('#messagestar').innerHTML = '*';
+				return false;
+			}
+			//if message length is greater than 500 then false
+			else if(message.length > 500){
+				document.querySelector('#messageerror').innerHTML = 'Message cannot exceed 500 characters.';
+				document.querySelector('#messagestar').innerHTML = '*';
+				return false;
+			}
+			//else return true
+			else{
+				document.querySelector('#messageerror').innerHTML = '';
+				document.querySelector('#messagestar').innerHTML = '';
+				return true;
+			}
+		}
+
+		//onsubmit, run the valid form based on the functions above
+		document.querySelector('#contactform').onsubmit = function(){
+			var validform = true;
+
+			if(namecheck() == false){
+				validform = false;
+			}
+
+			if(emailcheck() == false){
+				validform = false;
+			}
+
+			if(messagecheck() == false){
+				validform = false;
+			}
+
+			return validform;
+		}
+	</script>
+
+</body>
+</html>
